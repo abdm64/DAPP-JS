@@ -2,6 +2,8 @@
 require('dotenv').config();
 
 const Web3 = require('web3');
+//const NotificationService = require('./NotificationService')
+//const notificationService = new NotificationService()
 
 class TransactionChecker {
     web3;
@@ -21,29 +23,58 @@ class TransactionChecker {
         });
     }
 
-    watchTransactions() {
+    watchTransactions(notification) {
         console.log('Watching all pending transactions...');
+       
         this.subscription.on('data', (txHash) => {
             setTimeout(async () => {
                 try {
                     let tx = await this.web3.eth.getTransaction(txHash);
                     if (tx != null) {
+                        console.log(tx.from)
                         if (this.account == tx.to.toLowerCase()) {
-                            //send notifiaction to messages Service 
+                            
+                            
+                            //get the balance of account if less than 5 eth send notification 
+                                
+                            //console.log({address: tx.from, value: this.web3.utils.fromWei(tx.value, 'ether'), timestamp: new Date()});
+                             const balance = await web3.eth.getBalance(account)
+                             const ethBalance = web3.utils.fromWei(balance,'ether') 
+                             const time = new Date()
 
-                            console.log({address: tx.from, value: this.web3.utils.fromWei(tx.value, 'ether'), timestamp: new Date()});
+                              //send notifiaction to messages Service 
+                                    //notification.sendNotificationToTelegram(time,ethBalance)
+                                    //notification.sendNotificationToDiscord(time,ethBalance)
+                                    //notification.sendNotificationToSlack(time,ethBalance)
+                             
+                             if ( ethBalance < 5){
+                                   
+                                   
+
+                             } else {
+
+                                //do noting
+                             }
+
                         }
+
                     }
                 } catch (err) {
                     console.error(err);
                 }
-            }, 60000)
+            }, 6000)
         });
     }
 }
+
+module.exports = TransactionChecker
 
 let account = process.env.ADRESS_ID || '0xe1Dd30fecAb8a63105F2C035B084BfC6Ca5B1493'
 
 let txChecker = new TransactionChecker(process.env.INFURA_ID, account);
 txChecker.subscribe('pendingTransactions');
-txChecker.watchTransactions();
+const sendNotification = (msg) => {
+
+console.log(msg)
+}
+txChecker.watchTransactions(sendNotification);
