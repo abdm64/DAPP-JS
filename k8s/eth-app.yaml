@@ -24,12 +24,4 @@ spec:
               value: '9' #add the time when you want the  script execut every day forma should be 24 
             - name: TELEGRAM_TOKEN # 
               value: azae # add your telegram token to send you a notification
-            - name: PGPORT
-              value: '5432'
-            - name: PGDATABASE
-              value: postgres
-            - name: PGPASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pgpassword
-                  key: PGPASSWORD
+         
