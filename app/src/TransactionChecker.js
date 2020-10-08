@@ -23,7 +23,7 @@ class TransactionChecker {
         });
     }
 
-    watchTransactions(notification) {
+    watchTransactions() {
         console.log('Watching all pending transactions...');
        
         this.subscription.on('data', (txHash) => {
@@ -32,7 +32,7 @@ class TransactionChecker {
                     let tx = await this.web3.eth.getTransaction(txHash);
                     if (tx != null) {
                         console.log(tx.from)
-                        if (this.account == tx.to.toLowerCase()) {
+                        if (this.account == tx.from.toLowerCase()) {
                             
                             
                             //get the balance of account if less than 5 eth send notification 
@@ -41,10 +41,9 @@ class TransactionChecker {
                              const balance = await web3.eth.getBalance(account)
                              const ethBalance = web3.utils.fromWei(balance,'ether') 
                              const time = new Date()
-
+                                console.log({transactions : true, time: time,actuelBalance : ethBalance + ' eth'})
                               //send notifiaction to messages Service 
                                     //notification.sendNotificationToTelegram(time,ethBalance)
-                                    //notification.sendNotificationToDiscord(time,ethBalance)
                                     //notification.sendNotificationToSlack(time,ethBalance)
                              
                              if ( ethBalance < 5){
@@ -73,8 +72,5 @@ let account = process.env.ADRESS_ID || '0xe1Dd30fecAb8a63105F2C035B084BfC6Ca5B14
 
 let txChecker = new TransactionChecker(process.env.INFURA_ID, account);
 txChecker.subscribe('pendingTransactions');
-const sendNotification = (msg) => {
 
-console.log(msg)
-}
-txChecker.watchTransactions(sendNotification);
+txChecker.watchTransactions();

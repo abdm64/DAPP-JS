@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eth-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: eth-app
+  template:
+    metadata:
+      labels:
+        component: eth-app
+    spec:
+      containers:
+        - name: eth-app
+          image: abdm64/eth-app # or you can use private registry
+          env:
+            - name: ADRESS
+              value: 0*dad #add the Ethereum addresses of your account
+            - name: AMOUNT
+              value: '5'  #add the minimum amout of ether 
+            - name: TIME
+              value: '9' #add the time when you want the  script execut every day forma should be 24 
+            - name: TELEGRAM_TOKEN # 
+              value: azae # add your telegram token to send you a notification
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              value: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
