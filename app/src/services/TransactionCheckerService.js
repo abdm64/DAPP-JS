@@ -2,10 +2,8 @@
 require('dotenv').config();
 
 const Web3 = require('web3');
-//const NotificationService = require('./NotificationService')
-//const notificationService = new NotificationService()
 
-class TransactionChecker {
+class TransactionCheckerService {
     web3;
     web3ws;
     account;
@@ -13,7 +11,7 @@ class TransactionChecker {
 
     constructor(projectId, account) {
         this.web3ws = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/b34ec3bc8dd346eb94f3337e1c9f7cb6'));
-        this.web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/b34ec3bc8dd346eb94f3337e1c9f7cb6'));
+        this.web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/' + projectId));
         this.account = account.toLowerCase();
     }
 
@@ -23,7 +21,7 @@ class TransactionChecker {
         });
     }
 
-    watchTransactions() {
+    watchTransactions(notificationService) {
         console.log('Watching all pending transactions...');
        
         this.subscription.on('data', (txHash) => {
@@ -40,11 +38,16 @@ class TransactionChecker {
                             //console.log({address: tx.from, value: this.web3.utils.fromWei(tx.value, 'ether'), timestamp: new Date()});
                              const balance = await web3.eth.getBalance(account)
                              const ethBalance = web3.utils.fromWei(balance,'ether') 
-                             const time = new Date()
+                            
+                             const notificationBody = {
+                                 isTransaction : true ,
+                                time : new Date(),
+                                balance: ethBalance
+                             }
                                 console.log({transactions : true, time: time,actuelBalance : ethBalance + ' eth'})
-                              //send notifiaction to messages Service 
-                                    //notification.sendNotificationToTelegram(time,ethBalance)
-                                    //notification.sendNotificationToSlack(time,ethBalance)
+                             
+                                    notificationService.sendNotificationToTelegram(notificationBody)
+                                    
                              
                              if ( ethBalance < 5){
                                    
@@ -66,11 +69,11 @@ class TransactionChecker {
     }
 }
 
-module.exports = TransactionChecker
+module.exports = TransactionCheckerService
 
-let account = process.env.ADRESS_ID || '0xe1Dd30fecAb8a63105F2C035B084BfC6Ca5B1493'
+// let account = process.env.ADRESS_ID || '0xe1Dd30fecAb8a63105F2C035B084BfC6Ca5B1493'
 
-let txChecker = new TransactionChecker(process.env.INFURA_ID, account);
-txChecker.subscribe('pendingTransactions');
+// let txChecker = new TransactionChecker(process.env.INFURA_ID, account);
+// txChecker.subscribe('pendingTransactions');
 
-txChecker.watchTransactions();
+// txChecker.watchTransactions();

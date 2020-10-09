@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: eth-app-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       component: eth-app
@@ -16,12 +16,20 @@ spec:
         - name: eth-app
           image: abdm64/eth-app # or you can use private registry
           env:
-            - name: ADRESS
-              value: 0*dad #add the Ethereum addresses of your account
+            - name: ACCOUNT
+              value:  #add the Ethereum addresses of your account
             - name: AMOUNT
-              value: '5'  #add the minimum amout of ether 
+              value: 5  #add the minimum amout of ether 
             - name: TIME
               value: '9' #add the time when you want the  script execut every day forma should be 24 
+            - name: INFURA_ID # 
+              value: azae # add your  infura ID to connect to the blockchain
             - name: TELEGRAM_TOKEN # 
+              value: azae # add your telegram token to send you a notification  
+            - name: TELEGRAM_CHAT_ID 
               value: azae # add your telegram token to send you a notification
+            - name: SLACK_TOKEN # 
+              value: azae # add your telegram token to send you a notification  
+            - name: SLACK_CHAT_ID 
+              value: azae # add your telegram token to send you a notification  
          

@@ -1,88 +1,55 @@
-//@ts-check
-var schedule = require('node-schedule');
+
+const schedule = require('node-schedule');
+const keys = require('./src/config/keys')
+const telegramKeys = require('./src/config/TelegramKeys')
+const slackKeys = require('./src/config/SlackKeys')
+const TransactionCheckerService = require('./src/services/TransactionCheckerService')
+const NotificationService = require('./src/services/NotificationService')
+const time = keys.time
+//Class intance
+const transactionCheckerService  = new TransactionCheckerService(keys.ifura_ID,keys.account)
+const notificationService  = new NotificationService(slackKeys,telegramKeys)
 
 
-// let url = "https://mainnet.infura.io/v3/b34ec3bc8dd346eb94f3337e1c9f7cb6"
-// let Web3 = require('web3')
 
 
-// let account = '0x742d35Cc6634C0532925a3b844Bc454e4438f44e'
-// let app = express()
-// //connected to the main ether 
-// let web3 = new Web3(url)
+// subscribe to the evant pending trasactions
+transactionCheckerService.subscribe('pendingTransactions')
 
-// web3.eth.accounts.create()
-    const discordToken = process.env.DISCORD_TOKEN
-    const  slackToken = process.env.SLACK_TOKEN
-    const telegramToken = process.env.TELEGRAM_TOKEN
-    const time = process.env.TIME
+// watch tranasction to send notifiation to services 
+transactionCheckerService.watchTransactions(notificationService)
 
 
-// web3.eth.getBalance(account,(err,bal)=>{
-// if (err != null){
 
-// console.log(err)
 
-// } else {
 
-//     console.log("fedf")
-//     console.log(bal)
-// }
 
-// })
 
-// //console.log(web3)
 
+
+// big problem with timing 
 function getCronFromTime(time){
 
-
-
-
-
-
-
-
-
-
-
-    //convert Time to local time 
-//     const timeString = time.toLowerCase()
-//     const stringLength = timeString.length
-//     const timesign = timeString.slice('')[stringLength - 2]
-//     const hour =  ()=>{
-//         if ( timesign === 'p'){
-//             let hourNumber = parseInt(timeString.slice(':')[0]) + 12
-             
-//             return hourNumber.toString()
-//         }else {
-
-//             return timeString.slice(':')[0]
-//         }
-
-      
-//     }
-//     console.log(hour())  
-
-
-//     console.log(timesign)
-
-// console.log(timeString)
-   // return `${10} ${16} * * *`
-}
-//getCronFromTime('10:12 pm')
-
-//console.log(now)
-var date = new Date('2020-10-07 16:55:34 UTC');
-console.log(date.toString())
-
-
-
-
-// schedule.scheduleJob( getCronFromTime(), () => {
-    
-//    console.log('oops')
   
-//   });
+    return `0 ${time} * * *`
+}
+
+
+
+
+
+
+schedule.scheduleJob( getCronFromTime(time), () => {
+    // getBalance with ether
+
+    const notificationBody = {
+        isTransaction : false ,
+        balance : balance,
+        time : new Date()
+    }
+    
+   notificationService.sendNotification(notificationBody)
+  });
 
 
 
