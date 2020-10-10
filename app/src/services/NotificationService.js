@@ -3,10 +3,12 @@
 
 const { WebClient } = require('@slack/web-api');
 const TelegramBot = require('Telegraf');
+const axios = require('axios')
+const 
 
 
 class NotificationService  {
-    
+   
     telegramBot
     slack
     chatId_slack
@@ -16,7 +18,6 @@ class NotificationService  {
         this.slack =  new WebClient(slackKeys.token)
         this.chatId_slack= slackKeys.chatId
         this.chatId_telegram = telegramKeys.chatId 
-      
     }
 
  async sendNotification(notificationBody){ 
@@ -28,26 +29,38 @@ class NotificationService  {
 
     if (isTransaction){
 
-        message = `Please notice that your account made a  transaction at time ${time}  UTC ;  your currect balance is : ${balance} `
+        message = `Please notice that your account made a  transaction at time ${time.toUTCString()}  UTC ;  your currect balance is : ${balance} ETH`
     } else {
 
-        message = ` Daily check for your currect balance is : ${balance}  at ${time}  `
+        message = ` Daily check for your currect balance is : ${balance} ETH at ${time.toUTCString()}  UTC `
     }
 
-    //this.telegram.sendMessage( this.chatId_telegram, message)
+    
     this.telegramBot.telegram.sendMessage(this.chatId_telegram, message).catch(console.error);
 
-      
-    await this.slack.chat.postMessage({
-        text: message,
-        channel: this.chatId_slack,
-      });
+      this.slackNotification(message)
     
-    //
-
+    
 
 
 }
+async  slackNotification(message) {
+     
+    try {
+
+        await slackBot.chat.postMessage({
+            text: message,
+            channel:  this.chatId_slack,
+          });
+    } catch(err){
+
+        console.log(err)
+    }
+
+
+     }
+    
+    
 
 
 

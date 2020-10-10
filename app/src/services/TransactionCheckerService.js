@@ -71,9 +71,3 @@ class TransactionCheckerService {
 
 module.exports = TransactionCheckerService
 
-// let account = process.env.ADRESS_ID || '0xe1Dd30fecAb8a63105F2C035B084BfC6Ca5B1493'
-
-// let txChecker = new TransactionChecker(process.env.INFURA_ID, account);
-// txChecker.subscribe('pendingTransactions');
-
-// txChecker.watchTransactions();

@@ -11,8 +11,6 @@
   "dependencies": {
     "@slack/web-api": "^5.12.0",
     "discord.js": "^12.3.1",
-    "dotenv": "^8.2.0",
-    "ethereumjs-tx": "^2.1.2",
     "node-schedule": "^1.3.2",
     "telegraf": "^3.38.0",
     "web3": "^1.3.0"
