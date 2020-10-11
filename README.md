@@ -14,7 +14,16 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+- This application allow you  to track your amount of Ether and  get daily notification form an  account in etherum blockchain account ( challenge sent by the dev team at  [startbahn](https://startbahn.jp/en/) )
+
+
+## APP Architecture
+-
+![Alt text](./images/ethe-app.PNG?raw=true "Title")
+
+### APP Architecture Explained
+- 
+
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -35,7 +44,7 @@ You need to install the fellowing software in order to get the application up an
 
 - Download and Install node.js and NPM from https://nodejs.org/en/download/
 
- ## Running node.js application
+ ## Running the Node.js application
 - Download or clone the project code from https://github.com/abdm64/DAPP-JS.git
 
 - Install all required npm packages by running npm install from the command line in the app folder (where the package.json is located).
@@ -142,19 +151,13 @@ Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
+- [Web3.js](https://web3js.readthedocs.io/en/v1.3.0/) - blockchain interface
+- [Telegraph](https://telegraf.js.org/#/) - to telegram api
+- [@slack/web-api](https://www.npmjs.com/package/@slack/web-api) - Web Framework for slack api 
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
-## ✍️ Authors <a name = "authors"></a>
+## ✍️ Author <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
+- [@abdm64](https://github.com/abdm64) Backend |  DevOps Engineer @  [Djezzy](http://www.djezzy.dz/) 
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+Made with  ❤️  by Abdellah
