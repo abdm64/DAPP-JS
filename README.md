@@ -6,7 +6,6 @@
 - [Getting Started](#getting_started)
 - [Development ](#development)
 - [Deployment ](#deployment)
-- [Usage](#usage)
 - [Built Using](#built_using))
 - [Authors](#authors)
 
