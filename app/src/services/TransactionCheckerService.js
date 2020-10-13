@@ -32,32 +32,31 @@ class TransactionCheckerService {
                        // console.log(tx.from)
                         if (this.account == tx.from.toLowerCase()) {
                             
-                            
-                            //get the balance of account if less than 5 eth send notification 
+                            try {
+                                const balance = await this.web3.eth.getBalance(account)
+                                const ethBalance = this.web3.utils.fromWei(balance,'ether') 
+                               
+                                const notificationBody = {
+                                    isTransaction : true ,
+                                   time : new Date(),
+                                   balance: ethBalance
+                                }
+                                   console.log({transactions : true, time: time,actuelBalance : ethBalance + ' eth'})
                                 
-                            //console.log({address: tx.from, value: this.web3.utils.fromWei(tx.value, 'ether'), timestamp: new Date()});
-                             const balance = await this.web3.eth.getBalance(account)
-                             const ethBalance = this.web3.utils.fromWei(balance,'ether') 
-                            
-                             const notificationBody = {
-                                 isTransaction : true ,
-                                time : new Date(),
-                                balance: ethBalance
-                             }
-                                console.log({transactions : true, time: time,actuelBalance : ethBalance + ' eth'})
+                                       notificationService.sendNotification(notificationBody)
+
+
+
+                            }catch(err){
+
+                                console.error(err)
+
+
+                            }
                              
-                                    notificationService.sendNotificationToTelegram(notificationBody)
                                     
                              
-                             if ( ethBalance < 5){
-                                   
-                                   
-
-                             } else {
-
-                                //do noting
-                             }
-
+            
                         }
 
                     }

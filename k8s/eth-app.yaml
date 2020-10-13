@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: eth-app-deployment
+  namespace: eth-app-namespace  
 spec:
   replicas: 1
   selector:
@@ -33,7 +34,7 @@ spec:
                   name: eth-app-tokens
                   key: TELEGRAM_TOKEN 
             - name: TELEGRAM_CHAT_ID 
-              value: azae # add your telegram channel_id 
+              value: azae # add your telegram channel_id should be a number
             - name: SLACK_TOKEN # secret key
               valueFrom: 
                 secretKeyRef: 

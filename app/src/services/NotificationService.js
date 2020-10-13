@@ -38,8 +38,6 @@ class NotificationService  {
     this.telegramBot.telegram.sendMessage(this.chatId_telegram, message).catch(console.error);
 
       this.slackNotification(message)
-    
-    
 
 
 }

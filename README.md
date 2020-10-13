@@ -47,7 +47,7 @@ You need to install the fellowing software in order to get the application up an
 
 ### APP Architecture Explained <a name = "app-exp"></a>
 
--  The application  architecture contain 3 part 
+  The application  architecture contain 3 part 
 - Node js application that connect to the blockchain network using the web3js as interface via infura 
 - the application watch all transaction that happened in the blockchain network ( because all transactions will be broadcast at all node in the blockchain network )
 - when we detect a transaction happened FROM the provided account we  execute code  to get the currect  balance for that specific account ( using the web3js library ) and use the third party api for messages services (telegram, slack , etc )  to send notification 
@@ -118,7 +118,7 @@ docker build -t my-app-name:v1 .
 docker run -e [inject your env variable here] my-app-name:v1
 ```
 ###  Docker compose 
-- Also you can run the application as service by running  the fellowing CLI
+- Also you can run the application as service by running  
 
 ```
 docker-compose up 
@@ -138,12 +138,20 @@ docker-compose  down
 
 - Please fellow the instruction in   the eth-app.yaml file in the k8s folder to update all  information needed ( env var ) in order to the application work  on Kubernetes cluster
 
-- To run the application on Kubernetes cluster ( GKE) just run the fellowing  CLI  
+- To run the application on Kubernetes cluster ( GKE) just run the fellowing  command
 
 ```
 kubectl apply -f k8s
 ```
-- to drop the application just run the CLI : 
+- this will create 3 kubernetes objects: 
+  - Deployment for the application with one pod ( running container) insuring high availability for that service.
+  - Secret to store all you secret data including tokens password etc 
+  - Namespace  a  virtual cluster for all your ressource related to this application ( in our case the secret and the deployment )
+
+
+
+
+- to drop the application just run the command : 
 
 
 ```
