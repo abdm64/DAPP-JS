@@ -31,7 +31,7 @@ class TransactionCheckerService {
                     if (tx != null) {
                        // console.log(tx.from)
                         if (this.account == tx.from.toLowerCase()) {
-                            
+                            console.log('payment')
                             try {
                                 const balance = await this.web3.eth.getBalance(account)
                                 const ethBalance = this.web3.utils.fromWei(balance,'ether') 
