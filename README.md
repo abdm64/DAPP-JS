@@ -50,7 +50,7 @@ You need to install the fellowing software in order to get the application up an
 -  The application  architecture contain 3 part 
 - Node js application that connect to the blockchain network using the web3js as interface via infura 
 - the application watch all transaction that happened in the blockchain network ( because all transactions will be broadcast at all node in the blockchain network )
-- when we detect a transaction happened FROM the provided account we code execute to get the balance for that specific account ( using the web3js library ) and use the third party api for messages services (telegram, slack , etc )  to send notification 
+- when we detect a transaction happened FROM the provided account we  execute code  to get the currect  balance for that specific account ( using the web3js library ) and use the third party api for messages services (telegram, slack , etc )  to send notification 
 - everyday at giving time ( you can inject it on the deployment process )  we execute a code to get the balance for that account and send a notification ( using messages service )
 
 
@@ -68,9 +68,9 @@ cd app
 ```
 npm install
 ```
-- Before start the application you should change keys ( account ) and token in order to get messages from the the application in you slack and telegram channel
+- Before start the application you should change keys ( account ) and token in order to get messages from the the application in your slack and telegram channel
 
-- Start the application by running npm start from the command line in the app folder, you should see the message: Watching all pending transactions... .
+- Start the application by running npm start from the command line in the app folder, you should see the message: "the application Now is running, start  watch your  notification".
 
 ```
 npm start 
@@ -88,7 +88,7 @@ npm start
 
 - In order to deploy this application in production we need 
    - Docker to build image for this application and push it to the docker hub or private registry 
-   - Kubernetes cluster o run the application on production  mode from the image that was created 
+   - Kubernetes cluster to run the application in production  mode from the image that was created 
 
 ## Docker <a name = "docker"></a>
 
