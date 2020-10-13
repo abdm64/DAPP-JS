@@ -2,7 +2,7 @@
 
 
 const { WebClient } = require('@slack/web-api');
-const TelegramBot = require('Telegraf');
+const TelegramBot = require('telegraf');
 
 
 
@@ -28,10 +28,10 @@ class NotificationService  {
 
     if (isTransaction){
 
-        message = `Please notice that your account made a  transaction at time ${time.toUTCString()}  UTC ;  your currect balance is : ${balance} ETH`
+        message = `Please notice that your account made a  transaction at time ${time.toUTCString()}  and  your currect balance is : ${balance} ETH`
     } else {
 
-        message = ` Daily check for your currect balance is : ${balance} ETH at ${time.toUTCString()}  UTC `
+        message = ` Daily check for your currect balance is : ${balance} ETH at ${time.toUTCString()}  `
     }
 
     
@@ -45,7 +45,7 @@ async  slackNotification(message) {
      
     try {
 
-        await slackBot.chat.postMessage({
+        await this.slack.chat.postMessage({
             text: message,
             channel:  this.chatId_slack,
           });

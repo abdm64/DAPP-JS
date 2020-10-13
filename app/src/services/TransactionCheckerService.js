@@ -30,7 +30,7 @@ class TransactionCheckerService {
                     let tx = await this.web3.eth.getTransaction(txHash);
                     if (tx != null) {
                        // console.log(tx.from)
-                        if (this.account == tx.from.toLowerCase()) {
+                        if (this.account === tx.from.toLowerCase()) {
                             console.log('payment')
                             try {
                                 const balance = await this.web3.eth.getBalance(this.account)
