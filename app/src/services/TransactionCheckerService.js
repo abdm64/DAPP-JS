@@ -65,6 +65,10 @@ class TransactionCheckerService {
                 }
             }, 6000)
         });
+        // this.subscription.unsubscribe(function(error, success){
+        //     if(success)
+        //         console.log('Successfully unsubscribed!');
+        // });
     }
   async  getBalance(account){
     const balance = await this.web3.eth.getBalance(account)
