@@ -64,5 +64,7 @@ schedule.scheduleJob( utils.getCronFromTime(time),async () => {
 
 
 
-  console.log("the application Now is running watch your  notification")
+  console.log("the application Now is running, start  watch your  notification")
+
+  
 
