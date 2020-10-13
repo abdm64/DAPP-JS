@@ -33,12 +33,12 @@ class TransactionCheckerService {
                         if (this.account == tx.from.toLowerCase()) {
                             console.log('payment')
                             try {
-                                const balance = await this.web3.eth.getBalance(account)
+                                const balance = await this.web3.eth.getBalance(this.account)
                                 const ethBalance = this.web3.utils.fromWei(balance,'ether') 
-                               
+                               const time = new Date()
                                 const notificationBody = {
                                     isTransaction : true ,
-                                   time : new Date(),
+                                   time : time,
                                    balance: ethBalance
                                 }
                                    console.log({transactions : true, time: time,actuelBalance : ethBalance + ' eth'})
