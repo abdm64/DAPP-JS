@@ -5,9 +5,18 @@
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Development ](#development)
+
+     - [App Architecture](#app-archi)
+     - [APP Architecture Explained](#app-exp)
+     
+     - [Running the APP](#app-run)
 - [Deployment ](#deployment)
-- [Built Using](#built_using))
-- [Authors](#authors)
+     - [Deployment Architecture](#dep-archi)
+     - [Deployment Architecture Explained](#dep-exp)
+     - [Docker](#docker)
+     - [Kubernetes GKE](#k8s)
+- [Built Using](#built_using)
+- [Author](#authors)
 
 
 ## 🧐 About <a name = "about"></a>
@@ -32,11 +41,11 @@ You need to install the fellowing software in order to get the application up an
  - Kubernetes  on cloud
 
  # Development <a name = "development"></a>
- ## APP Architecture
+ ## APP Architecture <a name = "app-archi"></a>
 -
 ![Alt text](./images/ethe-app.PNG?raw=true "Title")
 
-### APP Architecture Explained
+### APP Architecture Explained <a name = "app-exp"></a>
 
 -  The application  architecture contain 3 part 
 - Node js application that connect to the blockchain network using the web3js as interface via infura 
@@ -49,7 +58,7 @@ You need to install the fellowing software in order to get the application up an
 
 - Download and Install node.js and NPM from https://nodejs.org/en/download/
 
- ### Running the Node.js application
+ ### Running the Node.js application <a name = "app-run"></a>
 - Download or clone the project code from https://github.com/abdm64/DAPP-JS.git
 
 - Install all required npm packages by running npm install from the command line in the app folder (where the package.json is located).
@@ -72,16 +81,16 @@ npm start
 
 # 🚀 Deployment <a name = "deployment"></a>
 
-## Deployment Architecture
+## Deployment Architecture <a name = "dep-archi"></a>
 -
 ![Alt text](./images/Ether-deploy.PNG?raw=true "Title")
-## Deployment Architecture Explained
+## Deployment Architecture Explained <a name = "dep-exp"></a>
 
 - In order to deploy this application in production we need 
    - Docker to build image for this application and push it to the docker hub or private registry 
    - Kubernetes cluster o run the application on production  mode from the image that was created 
 
-## Docker
+## Docker <a name = "docker"></a>
 
 ### Installing
 
@@ -121,7 +130,7 @@ and the docker-compose.yaml handle all the task for you
 ```
 docker-compose  down 
 ```
-## Kubernetes  GKE
+## Kubernetes  GKE <a name = "k8s"></a>
 
 - you should have access  to Kubernetes  cluster GKE or you can download and install minikube in your machine 
 

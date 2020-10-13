@@ -1,14 +1,14 @@
 
 const schedule = require('node-schedule');
-const keys = require('./src/config/keys')
-const telegramKeys = require('./src/config/TelegramKeys')
-const slackKeys = require('./src/config/SlackKeys')
+const keys = require('./config/keys')
+const telegramKeys = require('./config/TelegramKeys')
+const slackKeys = require('./config/SlackKeys')
 const time = keys.time
-const utils = require('./src/helper/utils')
+const utils = require('./helper/utils')
 
 // Class Prototype
-const TransactionCheckerService = require('./src/services/TransactionCheckerService')
-const NotificationService = require('./src/services/NotificationService')
+const TransactionCheckerService = require('./services/TransactionCheckerService')
+const NotificationService = require('./services/NotificationService')
 
 
 
