@@ -1,10 +1,11 @@
 
-const schedule = require('node-schedule');
+const cron = require('node-cron');
 const keys = require('./config/keys')
 const telegramKeys = require('./config/TelegramKeys')
 const slackKeys = require('./config/SlackKeys')
 const time = keys.time
 const utils = require('./helper/utils')
+const account = keys.account
 
 // Class Prototype
 const TransactionCheckerService = require('./services/TransactionCheckerService')
@@ -38,12 +39,12 @@ transactionCheckerService.watchTransactions(notificationService)
 
 
 
-
 // daily notification at specefic time
-schedule.scheduleJob( utils.getCronFromTime(time),async () => {
+cron.schedule( utils.getCronFromTime(time),async () => {
+ 
     try {
 
-        const  balance  =  await transactionCheckerService.getBalance(balance)
+        const  balance  =  await transactionCheckerService.getBalance(account)
 
         const notificationBody = {
             isTransaction : false ,

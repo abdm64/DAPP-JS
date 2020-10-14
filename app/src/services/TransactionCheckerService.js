@@ -45,6 +45,12 @@ class TransactionCheckerService {
                                 
                                        notificationService.sendNotification(notificationBody)
 
+                                    //    if ( ethBalance < ){
+
+
+                                    //   //  notificationService.sendNotification(notificationBody)
+                                    //    }
+
 
 
                             }catch(err){

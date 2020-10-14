@@ -5,12 +5,12 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
-    environment:
-      - ACCOUNT=
-      - AMOUNT=
-      - TIME=
-      - INFURA_ID= 
-      - SLACK_TOKEN=
-      - SLACK_CHAT_ID=
-      - TELEGRAM_TOKEN=
-      - TELEGRAM_CHAT_ID=   
+    environment: 
+    #   - ACCOUNT=
+    #   - AMOUNT=
+        - TIME= 17:52
+    #   - INFURA_ID= 
+    #   - SLACK_TOKEN=
+    #   - SLACK_CHAT_ID=
+    #   - TELEGRAM_TOKEN=
+    #   - TELEGRAM_CHAT_ID=   
