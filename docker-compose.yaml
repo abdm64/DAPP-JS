@@ -8,7 +8,7 @@ services:
     environment: 
     #   - ACCOUNT=
     #   - AMOUNT=
-        - TIME= 17:52
+        - TIME= 21:19
     #   - INFURA_ID= 
     #   - SLACK_TOKEN=
     #   - SLACK_CHAT_ID=
