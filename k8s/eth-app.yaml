@@ -4,10 +4,10 @@ metadata:
   name: eth-app-deployment
   namespace: eth-app-namespace  
 spec:
-  replicas: 1
+  replicas: 1 # we need one instance of the application
   selector:
     matchLabels:
-      component: eth-app
+      component: eth-app # in case we want to connect to other service 
   template:
     metadata:
       labels:
@@ -15,20 +15,20 @@ spec:
     spec:
       containers:
         - name: eth-app
-          image: abdm6464/eth-app-notification:v0.0.1 # or you can use private registry
+          image: abdm6464/eth-app-notification:v0.0.1 #  this my costum image in the docker hub support rinkeby network ; you can build your costum image and push it to private registry see the redme please 
           env:
             - name: ACCOUNT
               value:  #add the Ethereum addresses of your account
             - name: AMOUNT
               value: '5'  #add the minimum amout of ether 
             - name: TIME
-              value: '09:13' #add the time when you want the  script execut every day forma should be 24 
-            - name: INFURA_ID #  secret key
+              value: '09:13' #add the time when you want the  script execut every day format should be hh:mm 
+            - name: INFURA_ID #   all secret data should store in secret we don't want to expose our keys to the public  see the documentaion please 
               valueFrom: 
                 secretKeyRef: 
                   name: eth-app-tokens
                   key: INFURA_ID
-            - name: TELEGRAM_TOKEN #  
+            - name: TELEGRAM_TOKEN #   secret key
               valueFrom: 
                 secretKeyRef: 
                   name: eth-app-tokens
@@ -41,5 +41,7 @@ spec:
                   name: eth-app-tokens 
                   key: SLACK_TOKEN 
             - name: SLACK_CHAT_ID 
-              value: azae # add your telegram token to send you a notification  
+              value:  # add your telegram token to send you a notification  
+
+              # Please notice in order o get the applcaion work you need to fill env var 
          

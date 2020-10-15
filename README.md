@@ -22,6 +22,7 @@
 ## 🧐 About <a name = "about"></a>
 
 - This application allow you  to track your amount of Ether and  get daily notification form an  account in ethereum  blockchain account ( challenge sent by the dev team at  [startbahn](https://startbahn.jp/en/) )
+- Please Notice That we using the rinkeby test blocchain  Network for this application
 
 
 
@@ -168,11 +169,12 @@ kubectl delete  -f k8s
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [Web3.js](https://web3js.readthedocs.io/en/v1.3.0/) - blockchain interface for javascript program
-- [Telegraph](https://telegraf.js.org/#/) -  telegram api for javascript program
-- [@slack/web-api](https://www.npmjs.com/package/@slack/web-api) - Web Framework for slack api 
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-- [Docker](https://www.docker.com/) - Software platform for building applications
+- [Web3.js](https://web3js.readthedocs.io/en/v1.3.0/) - blockchain interface for javascript program.
+- [Telegraph](https://telegraf.js.org/#/) -  telegram api for javascript program.
+- [@slack/web-api](https://www.npmjs.com/package/@slack/web-api) - Web Framework for slack api .
+- [NodeJs](https://nodejs.org/en/) - Server Environment.
+- [Docker](https://www.docker.com/) - Software platform for building applications.
+- [Kubernetes](https://kubernetes.io/) - Container Orchestration.
 
 ## ✍️ Author <a name = "authors"></a>
 
