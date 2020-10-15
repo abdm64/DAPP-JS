@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: eth-app
-          image: abdm6464/eth-app-notification:v0.0.1 #  this my costum image in the docker hub support rinkeby network ; you can build your costum image and push it to private registry see the redme please 
+          image: abdm6464/eth-app-notification:v0.0.2 #  this my costum image in the docker hub support rinkeby network ; you can build your costum image and push it to private registry see the redme please 
           env:
             - name: ACCOUNT
               value:  #add the Ethereum addresses of your account
