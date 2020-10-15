@@ -8,11 +8,14 @@ class TransactionCheckerService {
     web3ws;
     account;
     subscription;
+    amount 
 
-    constructor(projectId, account) {
-        this.web3ws = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/'+ projectId));
-        this.web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/' + projectId));
-        this.account = account.toLowerCase();
+    constructor(keys) {
+        
+        this.web3ws = new Web3(new Web3.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/'+ keys.ifura_ID));
+        this.web3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/' + keys.ifura_ID));
+        this.account = keys.account.toLowerCase();
+        this.amount = keys.amount
     }
 
     subscribe(topic) {
@@ -45,10 +48,12 @@ class TransactionCheckerService {
                                 
                                        notificationService.sendNotification(notificationBody)
 
-                                    //    if ( ethBalance < ){
+                                       // if you want to send notification only if the currect balance is less than the amout injected in deployment files 
 
+                                    //    if ( ethBalance < this.amount){
+                                      //  notificationService.sendNotification(notificationBody)
 
-                                    //   //  notificationService.sendNotification(notificationBody)
+                                    
                                     //    }
 
 
@@ -72,7 +77,7 @@ class TransactionCheckerService {
             }, 6000)
         });
         // this.subscription.unsubscribe(function(error, success){
-        //     if(success)
+        //     // if(success)
         //         console.log('Successfully unsubscribed!');
         // });
     }

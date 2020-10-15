@@ -1,10 +1,9 @@
 
-const cron = require('node-cron');
 const keys = require('./config/keys')
 const telegramKeys = require('./config/TelegramKeys')
 const slackKeys = require('./config/SlackKeys')
 const time = keys.time
-const utils = require('./helper/utils')
+const dailyNotificationService = require('./helper/DailyNotification')
 const account = keys.account
 
 // Class Prototype
@@ -14,10 +13,16 @@ const NotificationService = require('./services/NotificationService')
 
 
 //Class intance with init data 
-const transactionCheckerService  = new TransactionCheckerService(keys.ifura_ID,keys.account)
+const transactionCheckerService  = new TransactionCheckerService(keys)
 const notificationService  = new NotificationService(slackKeys,telegramKeys)
+// daily notification information
+const dailyNotificationBody = {
+    time : time,
+    transactionService: transactionCheckerService,
+    account: account,
+    notificationService : notificationService
 
-
+}
 
 
 // subscribe to the evant pending trasactions
@@ -27,41 +32,26 @@ transactionCheckerService.subscribe('pendingTransactions')
 transactionCheckerService.watchTransactions(notificationService)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // daily notification at specefic time
-cron.schedule( utils.getCronFromTime(time),async () => {
- 
-    try {
 
-        const  balance  =  await transactionCheckerService.getBalance(account)
+dailyNotificationService.sendNotification(dailyNotificationBody)
 
-        const notificationBody = {
-            isTransaction : false ,
-            balance : balance,
-            time : new Date()
-        }
-        
-       notificationService.sendNotification(notificationBody)
 
-    }catch(err){
 
-        console.log(err)
 
-    }
+
+
+
+
+
+
+
+
+
+
    
   
-  });
+
 
 
 
