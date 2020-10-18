@@ -1,4 +1,4 @@
-#virtual cluster for all your ressource related to this application ( in our case the secret and the deployment )
+#virtual cluster for all your resource related to this application ( in our case the secret and the deployment )
 apiVersion: v1
 kind: Namespace
 metadata:

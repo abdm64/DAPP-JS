@@ -1,5 +1,5 @@
 
-// all keys related to the inial data 
+// all keys related to the init data 
 module.exports = {
     account : process.env.ACCOUNT || '0x2bD5AD3F1BD8C96463eA834f110251fD1d5Fc560' ,
     amount : process.env.AMOUNT ||  5 ,

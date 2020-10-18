@@ -5,14 +5,14 @@ const slackKeys = require('./config/SlackKeys')
 const time = keys.time
 const account = keys.account
 
-// Class Prototype
+// import Class Prototype
 const TransactionCheckerService = require('./services/TransactionCheckerService')
 const NotificationService = require('./services/NotificationService')
 //
 const dailyNotificationService = require('./helper/DailyNotification')
 
 
-//Class intance with init data  ( from the env var )
+//Class  instance with init data  ( from the env var )
 const transactionCheckerService  = new TransactionCheckerService(keys)
 const notificationService  = new NotificationService(slackKeys,telegramKeys)
 // daily notification information
@@ -25,14 +25,14 @@ const dailyNotificationBody = {
 }
 
 
-// subscribe to the evant pending trasactions
+// subscribe to the event pending transaction
 transactionCheckerService.subscribe('pendingTransactions')
 
-// watch all tranasctions to send notifiation to services 
+// watch all transactions to send notification to services 
 transactionCheckerService.watchTransactions(notificationService)
 
 
-// daily notification at specefic time
+// daily notification at specific time
 
 dailyNotificationService.sendNotification(dailyNotificationBody)
 

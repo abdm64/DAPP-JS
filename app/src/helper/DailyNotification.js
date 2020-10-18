@@ -3,7 +3,7 @@ const cron = require('node-cron');
 
 
 
-// get local time form UTC Time ()
+// get local time form UTC Time 
  function getCronFromTime(time){
     const d = new Date()
     const d1 = new Date()
@@ -16,25 +16,25 @@ const cron = require('node-cron');
     
     const  deff_hours =  d1.getHours() - utc_date.getHours()
     const deff_min = d1.getMinutes() - utc_date.getMinutes()
-     const actuelHour =  deff_hours + parseInt(hours)
-    const actuelMinutes = deff_min + parseInt(min)
+     const actualHour =  deff_hours + parseInt(hours)
+    const actualMinutes = deff_min + parseInt(min)
     
-    return `${actuelMinutes} ${actuelHour} * * *`
+    return `${actualMinutes} ${actualHour} * * *`
 }
 
-// file will be respnsible about the daily notification 
+// this  function  will be responsible for  scheduling  the daily notification 
  exports.sendNotification = (dailyNotificationBody) =>{
   
-// get all fucntion and data  we need 
+// get all function and data  we need  from the dailyNotificationBody
     const time = dailyNotificationBody.time
     const transactionService = dailyNotificationBody.transactionService
     const account = dailyNotificationBody.account
     const notificationService = dailyNotificationBody.notificationService
-//  schedule a job usein the node-cron module 
+//  schedule a job using  the node-cron module 
     cron.schedule( getCronFromTime(time),async () => {
  
         try {
-    // the actuel balance at that time 
+    // the actual balance at that time 
             const  balance  =  await transactionService.getBalance(account)
     // build notification body 
             const notificationBody = {
