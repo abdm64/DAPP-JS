@@ -21,7 +21,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-- This application allow you  to track your amount of Ether and  get daily notification form your account in ethereum  blockchain  ( challenge sent by the dev team at  [startbahn](https://startbahn.jp/en/) ).
+- This application allow you  to track your amount of Ether and  get daily notification form your account in ethereum  blockchain .
 - Please Notice That we using the rinkeby test blockchain  Network for this application.
 
 
